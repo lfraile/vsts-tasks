@@ -1,3 +1,4 @@
+import fs = require('fs');
 import path = require('path');
 import os = require('os');
 import tl = require('vsts-task-lib/task');
@@ -278,7 +279,7 @@ if (files.length > 0) {
                     // For additional information, refer to the fs source code and ctrl+f "st_mode":
                     //   https://github.com/nodejs/node/blob/v5.x/deps/uv/src/win/fs.c#L1064
                     tl.debug(`removing readonly attribute on '${targetPath}'`);
-                    tl.chmod(targetPath, targetStats.mode | 146);
+                    fs.chmod(targetPath, targetStats.mode | 146);
                 }
 
                 tl.cp(file, targetPath, "-f");

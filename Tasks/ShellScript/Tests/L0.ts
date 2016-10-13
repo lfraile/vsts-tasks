@@ -2,6 +2,7 @@
 // npm install mocha --save-dev
 // typings install dt~mocha --save --global
 
+import * as mockery from 'mockery';
 import * as path from 'path';
 import * as assert from 'assert';
 import * as ttm from 'vsts-task-lib/mock-test';

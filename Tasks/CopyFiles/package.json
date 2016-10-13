@@ -11,5 +11,8 @@
   "license": "MIT",
   "dependencies": {
     "vsts-task-lib": "^0.9.20"
+  },
+  "devDependencies": {
+    "mockery": "2.0.0"
   }
 }
