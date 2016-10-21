@@ -3,7 +3,7 @@ import tl = require('vsts-task-lib/task');
 
 tl.setResourcePath(path.join( __dirname, 'task.json'));
 
-var npm = tl.createToolRunner(tl.which('npm', true));
+var npm = tl.tool(tl.which('npm', true));
 
 var cwd = tl.getPathInput('cwd', true, false);
 tl.mkdirP(cwd);
@@ -13,11 +13,10 @@ var command = tl.getInput('command', true);
 if (command.indexOf(' ') >= 0) {
 	tl.setResult(tl.TaskResult.Failed, tl.loc("InvalidCommand"));
 }
-npm.arg(command);
+var args = tl.getInput('arguments', false);
 
-npm.argString(tl.getInput('arguments', false));
-
-npm.exec()
+npm.arg(command).line(args)
+.exec()
 .then(function(code) {
 	tl.setResult(code, tl.loc('NpmReturnCode', code));
 })
